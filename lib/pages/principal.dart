@@ -8,6 +8,7 @@ import 'package:sidebarx/sidebarx.dart';
 
 import 'package:http/http.dart' as http;
 
+import '../dto/wuakalasDTO.dart';
 import '../global.dart';
 
 class Principal extends StatefulWidget {
@@ -18,7 +19,7 @@ class Principal extends StatefulWidget {
 }
 
 class _PrincipalState extends State<Principal> {
-  late Future<List<MessageDto>> futureMessages;
+  late Future<List<WuakalasDto>> futureMessages;
   late List items;
 
   @override
@@ -27,13 +28,13 @@ class _PrincipalState extends State<Principal> {
     futureMessages = getMessages();
   }
 
-  Future<List<MessageDto>> getMessages() async {
-    final response =
-        await http.get(Uri.parse(Global.baseApiUrl + '/api/mensajes'));
+  Future<List<WuakalasDto>> getMessages() async {
+    final response = await http
+        .get(Uri.parse(Global.baseApiUrl + '/api/wuakalasApi/Getwuakalas'));
 
     if (response.statusCode == 200) {
       //print(response.body);
-      return messageDtoFromJson(response.body);
+      return wuakalasDtoFromJson(response.body);
     } else {
       CoolAlert.show(
         context: context,
@@ -125,7 +126,7 @@ class _PrincipalState extends State<Principal> {
           ],
         )),
         body: SingleChildScrollView(
-          child: FutureBuilder<List<MessageDto>>(
+          child: FutureBuilder<List<WuakalasDto>>(
               future: futureMessages,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
@@ -154,13 +155,13 @@ class _PrincipalState extends State<Principal> {
                     builder: (context) => const agregarMensaje()));
           },
           backgroundColor: Global.colorOficial,
-          child: const Icon(Icons.message),
+          child: const Icon(Icons.add),
         ),
       ),
     );
   }
 
-  Widget tarjeta(MessageDto obj) {
+  Widget tarjeta(WuakalasDto obj) {
     const sizedBox = SizedBox(height: 20);
     return SingleChildScrollView(
       child: Padding(
@@ -183,39 +184,56 @@ class _PrincipalState extends State<Principal> {
                   ),
                 ],
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ListTile(
-                    //leading: Icon(Icons.album),
-                    title: Text(obj.titulo,
-                        style: TextStyle(
-                            color: Global.colorSecundario,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold)),
-                    subtitle: Text(
-                      "Por: ${obj.login}",
-                      style: TextStyle(color: Global.colorTexto),
-                    ),
-                  ),
-                  FractionallySizedBox(
-                    //para que el texto abarque un porcentaje del cuadro completo
-                    widthFactor: 0.95,
-                    child: Text(
-                      obj.texto,
-                      style: const TextStyle(
-                        fontSize: 18,
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: [
+                          ListTile(
+                            //leading: Icon(Icons.album),
+                            title: Text(obj.sector,
+                                style: TextStyle(
+                                    color: Global.colorSecundario,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold)),
+                            subtitle: Text(
+                              "Por: ${obj.autor}",
+                              style: TextStyle(color: Global.colorTexto),
+                            ),
+                          ),
+                          FractionallySizedBox(
+                            //para que el texto abarque un porcentaje del cuadro completo
+                            widthFactor: 0.95,
+                            child: Text(
+                              obj.id.toString(),
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          sizedBox,
+                          Text(
+                            "Fecha: ${obj.fecha}",
+                            style: const TextStyle(
+                                fontSize: 16, fontStyle: FontStyle.italic),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  sizedBox,
-                  Text(
-                    "Fecha: ${obj.fecha}",
-                    style: const TextStyle(
-                        fontSize: 16, fontStyle: FontStyle.italic),
-                  ),
-                ],
-              ),
+                    Expanded(
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const agregarMensaje()));
+                            },
+                            icon: Icon(Icons.add))),
+                  ],
+                )
+              ]),
             ),
           ),
         ),

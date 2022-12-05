@@ -122,6 +122,7 @@ class _loginState extends State<login> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => Principal()));
+                          //DEMO LOGIN
                           return;
                           if (userController.text.isEmpty) {
                             Fluttertoast.showToast(

@@ -67,7 +67,7 @@ class _agregarMensajeState extends State<agregarMensaje> {
                 Container(
                   alignment: Alignment.center,
                   child: Text(
-                    "Agregar nuevo mensaje",
+                    "Avisar por nuevo Wuakala",
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -80,8 +80,8 @@ class _agregarMensajeState extends State<agregarMensaje> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(40)),
-                        hintText: "Ingrese un título",
-                        labelText: "Título",
+                        hintText: "Ingrese un Sector",
+                        labelText: "Sector",
                         suffixIcon: const Icon(Icons.format_quote,
                             color: Colors.black54))),
                 sizedBox,
@@ -92,10 +92,33 @@ class _agregarMensajeState extends State<agregarMensaje> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)),
-                        hintText: "Ingrese un mensaje",
+                        hintText: "Ingrese una descripcion",
                         labelText: "Descripción",
                         suffixIcon: const Icon(Icons.forum))),
                 sizedBox,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        Text("Foto1"),
+                        sizedBox,
+                        //Coso para capturar imagen de la camara
+                        sizedBox,
+                        Text("Borrar"), // relacionado con la camara
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text("Foto1"),
+                        sizedBox,
+                        //Coso para capturar imagen de la camara
+                        sizedBox,
+                        Text("Borrar"), // relacionado con la camara
+                      ],
+                    ),
+                  ],
+                ),
                 sizedBox,
                 SizedBox(
                     width: double.infinity,
@@ -105,6 +128,7 @@ class _agregarMensajeState extends State<agregarMensaje> {
                             backgroundColor: Global.colorSecundario,
                             shape: const StadiumBorder()),
                         onPressed: () {
+                          //! Validacion de errores
                           if (titleController.text.isEmpty) {
                             Fluttertoast.showToast(
                                 msg: "Ingrese un título",
@@ -128,8 +152,22 @@ class _agregarMensajeState extends State<agregarMensaje> {
                                 titleController.text, textController.text);
                           }
                         },
-                        child: const Text("Enviar"))),
+                        child: const Text("Denunciar Wuakala"))),
                 sizedBox,
+                SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Global.colorSecundario,
+                            shape: const StadiumBorder()),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Principal()));
+                        },
+                        child: const Text("Me Arrepentí"))),
               ],
             ),
           ),
