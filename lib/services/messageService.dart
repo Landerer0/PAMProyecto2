@@ -30,4 +30,9 @@ class MessageService {
           'texto': descripcion
         }));
   }
+
+  Future<http.Response> getWuakala(int id) async {
+    return await http.get(Uri.parse(
+        Global.baseApiUrl + '/api/wuakalasApi/Getwuakala?id=' + id.toString()));
+  }
 }

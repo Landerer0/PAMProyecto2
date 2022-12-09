@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:proyecto02/pages/agregarMensaje.dart';
+import 'package:proyecto02/pages/detalleWuakala.dart';
 import 'package:proyecto02/pages/homeScreen.dart';
 import 'package:proyecto02/dto/messageDTO.dart';
 import 'package:proyecto02/pages/integrantes.dart';
@@ -228,9 +229,9 @@ class _PrincipalState extends State<Principal> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const agregarMensaje()));
+                                          detalleWuakala(obj.id)));
                             },
-                            icon: Icon(Icons.add))),
+                            icon: Icon(Icons.arrow_circle_right))),
                   ],
                 )
               ]),
