@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:proyecto02/pages/principal.dart';
+import 'package:proyecto02/pages/cameraPage.dart';
 import 'package:proyecto02/services/messageService.dart';
 
 import '../global.dart';
@@ -16,6 +20,8 @@ class agregarMensaje extends StatefulWidget {
 class _agregarMensajeState extends State<agregarMensaje> {
   TextEditingController titleController = TextEditingController();
   TextEditingController textController = TextEditingController();
+  bool showPic = false;
+  String? imagen1, imagen2;
   @override
   Future<void> validarMensaje(title, text) async {
     final response =
@@ -101,17 +107,43 @@ class _agregarMensajeState extends State<agregarMensaje> {
                   children: [
                     Column(
                       children: [
-                        Text("Foto1"),
+                        if (imagen1 != null)
+                          Image.file(
+                            File(imagen1!),
+                            scale: 30,
+                          ),
                         sizedBox,
                         //Coso para capturar imagen de la camara
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Global.colorSecundario,
+                                shape: const StadiumBorder()),
+                            onPressed: () async {
+                              _navigateAndDisplaySelection1(context);
+                            },
+                            child: const Text("Foto 1")),
                         sizedBox,
                         Text("Borrar"), // relacionado con la camara
                       ],
                     ),
                     Column(
                       children: [
-                        Text("Foto1"),
+                        if (imagen2 != null)
+                          Image.file(
+                            File(imagen2!),
+                            scale: 30,
+                          ),
                         sizedBox,
+                        //Coso para capturar imagen de la camara
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Global.colorSecundario,
+                                shape: const StadiumBorder()),
+                            onPressed: () async {
+                              _navigateAndDisplaySelection2(context);
+                            },
+                            child: const Text("Foto 2")),
+
                         //Coso para capturar imagen de la camara
                         sizedBox,
                         Text("Borrar"), // relacionado con la camara
@@ -174,5 +206,35 @@ class _agregarMensajeState extends State<agregarMensaje> {
         ),
       ),
     );
+  }
+
+  Future<void> _navigateAndDisplaySelection1(BuildContext context) async {
+    final result = await availableCameras().then((value) => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CameraPage(cameras: value),
+          ),
+        ));
+
+    setState(() {
+      imagen1 = result;
+    });
+
+    if (!mounted) return;
+  }
+
+  Future<void> _navigateAndDisplaySelection2(BuildContext context) async {
+    final result = await availableCameras().then((value) => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CameraPage(cameras: value),
+          ),
+        ));
+
+    setState(() {
+      imagen2 = result;
+    });
+
+    if (!mounted) return;
   }
 }
