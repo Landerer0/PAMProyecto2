@@ -200,40 +200,46 @@ class _PrincipalState extends State<Principal> {
                                     color: Global.colorSecundario,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold)),
-                            subtitle: Text(
-                              "Por: ${obj.autor}",
-                              style: TextStyle(color: Global.colorTexto),
-                            ),
-                          ),
-                          FractionallySizedBox(
-                            //para que el texto abarque un porcentaje del cuadro completo
-                            widthFactor: 0.95,
-                            child: Text(
-                              obj.id.toString(),
-                              style: const TextStyle(
-                                fontSize: 18,
+                            subtitle: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Por: ${obj.autor}",
+                                    style: TextStyle(color: Global.colorTexto),
+                                  ),
+                                  Text(
+                                    "Fecha: ${obj.fecha}",
+                                    style: const TextStyle(
+                                        fontStyle: FontStyle.italic),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                          sizedBox,
-                          Text(
-                            "Fecha: ${obj.fecha}",
-                            style: const TextStyle(
-                                fontSize: 16, fontStyle: FontStyle.italic),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                        child: IconButton(
-                            onPressed: () {
+                            onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           detalleWuakala(obj.id)));
                             },
-                            icon: Icon(Icons.arrow_circle_right))),
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      detalleWuakala(obj.id)));
+                        },
+                        icon: Icon(
+                          Icons.keyboard_arrow_right,
+                        )),
                   ],
                 )
               ]),

@@ -26,6 +26,48 @@ class _detalleWuakalaState extends State<detalleWuakala> {
   _detalleWuakalaState({required this.index});
 
   Widget mostrarComentario(Comentario com) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SizedBox(
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(2),
+          alignment: Alignment.center,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        ListTile(
+                          //leading: Icon(Icons.album),
+                          title: Text(com.descripcion),
+                          subtitle: Text("Por: " + com.autor),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            ]),
+          ),
+        ),
+      ),
+    );
+    /*
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -46,6 +88,7 @@ class _detalleWuakalaState extends State<detalleWuakala> {
         sizedBox,
       ],
     );
+    */
   }
 
   Widget mostrarDetalle(WuakalaDto wuakala) {
