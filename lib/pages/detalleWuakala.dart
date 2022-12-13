@@ -1,6 +1,7 @@
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto02/dto/wuakalaDTO.dart';
+import 'package:proyecto02/pages/wuakalaComentario.dart';
 
 import '../dto/wuakalaDTO.dart';
 import '../global.dart';
@@ -113,7 +114,13 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Global.colorSecundario,
                             shape: const StadiumBorder()),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const wuakalaComentario()));
+                        },
                         child: Text("Comentar"))
                   ],
                 ),
