@@ -182,28 +182,37 @@ class _agregarMensajeState extends State<agregarMensaje> {
                                 backgroundColor: Colors.red,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
+                          } else if (imagen1 == null) {
+                            Fluttertoast.showToast(
+                                msg: "Ingrese una imagen en Foto1",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
                           } else {
-                            File image1file =
-                                File(imagen1!); //convert Path to File
-                            Uint8List image1bytes = await image1file
+                            File image1file, image2file;
+                            Uint8List image1bytes, image2bytes;
+                            String base64string1, base64string2;
+                            String? imagen2;
+                            image1file = File(imagen1!); //convert Path to File
+                            image1bytes = await image1file
                                 .readAsBytes(); //convert to bytes
-                            String base64string1 = base64.encode(
+                            base64string1 = base64.encode(
                                 image1bytes); //convert bytes to base64 string
                             print(base64string1);
-                            File image2file =
-                                File(imagen2!); //convert Path to File
-                            Uint8List image2bytes = await image2file
-                                .readAsBytes(); //convert to bytes
-                            String base64string2 = base64.encode(
-                                image2bytes); //convert bytes to base64 string
-                            print(base64string1);
-                            print(base64string2);
-                            if (base64string1 == base64string2)
-                              print("iguales");
-                            print(sectorController.text);
-                            print(
-                                "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
-                            print(descripcionController.text);
+                            if (imagen2 != null) {
+                              image2file =
+                                  File(imagen2!); //convert Path to File
+                              image2bytes = await image2file
+                                  .readAsBytes(); //convert to bytes
+                              base64string2 = base64.encode(
+                                  image2bytes); //convert bytes to base64 string
+                            } else {
+                              base64string2 = "null";
+                            }
+
                             validarMensaje(
                                 sectorController.text,
                                 descripcionController.text,

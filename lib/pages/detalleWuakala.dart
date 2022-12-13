@@ -164,6 +164,12 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                               wuakala.urlFoto2)));
                 },
               ),
+              if (wuakala.urlFoto2 == "") ...[
+                Image.network(Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
+                    scale: 10),
+              ],
+              Image.network(Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
+                  scale: 10),
             ],
           ),
           sizedBox,
