@@ -125,12 +125,22 @@ class _detalleWuakalaState extends State<detalleWuakala> {
             style: TextStyle(fontSize: 20),
           ),
           sizedBox,
-          Text("url1: " + wuakala.urlFoto1),
+          //Text("url1: " + wuakala.urlFoto1),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.network(Global.baseApiUrl + "/images/" + wuakala.urlFoto1,
+                  scale: 10),
+              SizedBox(
+                width: 30,
+              ),
+              Image.network(Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
+                  scale: 10),
+            ],
+          ),
           //! encontre esto en internet, pero nose si funciona ya que no tengo el base 64
           //Image.memory(base64Decode(
           //    wuakala.urlFoto1.substring(0, wuakala.urlFoto1.length - 4))),
-          sizedBox,
-          Text("url2: " + wuakala.urlFoto2),
           sizedBox,
           Text("Subido por: " +
               wuakala.autor +
