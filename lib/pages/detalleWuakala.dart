@@ -7,6 +7,9 @@ import 'package:proyecto02/pages/wuakalaComentario.dart';
 import '../dto/wuakalaDTO.dart';
 import '../global.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:flutter/widgets.dart';
 
 import '../services/messageService.dart';
 
@@ -25,6 +28,18 @@ class _detalleWuakalaState extends State<detalleWuakala> {
   Widget sizedBox = SizedBox(height: 20);
 
   _detalleWuakalaState({required this.index});
+
+  Image imageFromBase64String(String base64String) {
+    return Image.memory(base64Decode(base64String));
+  }
+
+  Uint8List dataFromBase64String(String base64String) {
+    return base64Decode(base64String);
+  }
+
+  String base64String(Uint8List data) {
+    return base64Encode(data);
+  }
 
   Widget mostrarComentario(Comentario com) {
     return Padding(
@@ -111,6 +126,9 @@ class _detalleWuakalaState extends State<detalleWuakala> {
           ),
           sizedBox,
           Text("url1: " + wuakala.urlFoto1),
+          //! encontre esto en internet, pero nose si funciona ya que no tengo el base 64
+          //Image.memory(base64Decode(
+          //    wuakala.urlFoto1.substring(0, wuakala.urlFoto1.length - 4))),
           sizedBox,
           Text("url2: " + wuakala.urlFoto2),
           sizedBox,

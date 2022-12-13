@@ -28,7 +28,7 @@ class MessageService {
         body: jsonEncode(<String, String>{
           'sector': sector,
           'descripcion': descripcion,
-          'id_autor': 1.toString(), //! CAMBIAR DSPS POR EL ID VERDADERO
+          'id_autor': Global.idUsuario.toString(),
           'base64Foto1': imagen1,
           'base64Foto2': imagen2
         }));
@@ -50,5 +50,22 @@ class MessageService {
   Future<http.Response> getWuakala(int id) async {
     return await http.get(Uri.parse(
         Global.baseApiUrl + '/api/wuakalasApi/Getwuakala?id=' + id.toString()));
+  }
+
+  // Agregar un mensaje en el sistema
+  Future<http.Response> ingresoComentario(
+    int index,
+    String descripcion,
+  ) async {
+    return await http.post(
+        Uri.parse(Global.baseApiUrl + '/api/comentariosApi/Postcomentario'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'id_wuakala': index.toString(),
+          'descripcion': descripcion,
+          'id_autor': Global.idUsuario.toString(),
+        }));
   }
 }

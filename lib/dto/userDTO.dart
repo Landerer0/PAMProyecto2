@@ -1,7 +1,3 @@
-// clase generada en https://app.quicktype.io usando el JSON proporcionado por un get de
-// https://b07641d697eb.sa.ngrok.io/api/usuarios
-// usando el campo required y posteriormente eliminando los @ de @required
-
 // To parse this JSON data, do
 //
 //     final userDto = userDtoFromJson(jsonString);
@@ -9,40 +5,30 @@
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-List<UserDto> userDtoFromJson(String str) =>
-    List<UserDto>.from(json.decode(str).map((x) => UserDto.fromJson(x)));
+UserDto userDtoFromJson(String str) => UserDto.fromJson(json.decode(str));
 
-String userDtoToJson(List<UserDto> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String userDtoToJson(UserDto data) => json.encode(data.toJson());
 
 class UserDto {
   UserDto({
     required this.id,
-    required this.login,
-    required this.pass,
     required this.nombre,
-    required this.ultimaFechaIngreso,
+    required this.email,
   });
 
-  int id;
-  String login;
-  String pass;
-  String nombre;
-  dynamic ultimaFechaIngreso;
+  final int id;
+  final String nombre;
+  final String email;
 
   factory UserDto.fromJson(Map<String, dynamic> json) => UserDto(
-        id: json["Id"],
-        login: json["login"],
-        pass: json["pass"],
+        id: json["id"],
         nombre: json["nombre"],
-        ultimaFechaIngreso: json["UltimaFechaIngreso"],
+        email: json["email"],
       );
 
   Map<String, dynamic> toJson() => {
-        "Id": id,
-        "login": login,
-        "pass": pass,
+        "id": id,
         "nombre": nombre,
-        "UltimaFechaIngreso": ultimaFechaIngreso,
+        "email": email,
       };
 }

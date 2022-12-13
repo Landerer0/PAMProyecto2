@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto02/pages/login.dart';
-import 'package:proyecto02/pages/signup.dart';
 
 import '../global.dart';
 
@@ -53,21 +52,6 @@ class HomeScreen extends StatelessWidget {
                                   builder: (context) => const login()));
                         },
                         child: const Text("Ingresar"))),
-                sizedBox,
-                SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Global.colorSecundario,
-                            shape: const StadiumBorder()),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SignUp()));
-                        },
-                        child: const Text("Registrarme"))),
                 sizedBox,
                 SizedBox(
                   width: double.infinity,

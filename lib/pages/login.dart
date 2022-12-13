@@ -1,12 +1,13 @@
 import 'package:cool_alert/cool_alert.dart';
 import 'package:proyecto02/global.dart';
 import 'package:proyecto02/pages/principal.dart';
-import 'package:proyecto02/pages/rememberUser.dart';
-import 'package:proyecto02/pages/signup.dart';
 import 'package:proyecto02/services/loginService.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../dto/userDTO.dart';
 
 class login extends StatefulWidget {
   const login({super.key});
@@ -17,6 +18,7 @@ class login extends StatefulWidget {
 
 class _loginState extends State<login> {
   late final pref;
+  late Future<UserDto> futureUser;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -28,8 +30,11 @@ class _loginState extends State<login> {
       //almacenar de alguna manera el login
 
       await pref.setString('email', user);
+      UserDto usuario = userDtoFromJson(response.body);
 
       Global.login = user;
+      Global.idUsuario = usuario.id;
+      print(Global.idUsuario);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => Principal()));
     } else {
@@ -150,20 +155,6 @@ class _loginState extends State<login> {
                           }
                         },
                         child: const Text("Acceder"))),
-                sizedBox,
-                GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignUp()));
-                    },
-                    child: Text(
-                      "Regístrese aquí",
-                      style: TextStyle(
-                          color: Global.colorTexto,
-                          fontWeight: FontWeight.bold),
-                    ))
               ],
             ),
           ),
