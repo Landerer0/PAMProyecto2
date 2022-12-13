@@ -34,6 +34,19 @@ class MessageService {
         }));
   }
 
+  // Put Wuakala
+  Future<http.Response> sigueAhiWuakala(String index) async {
+    return await http.put(
+      Uri.parse(Global.baseApiUrl + '/api/wuakalasApi/PutSigueAhi?id=' + index),
+    );
+  }
+
+  Future<http.Response> yaNoEstaWuakala(String index) async {
+    return await http.put(
+      Uri.parse(Global.baseApiUrl + '/api/wuakalasApi/PutYanoEsta?id=' + index),
+    );
+  }
+
   Future<http.Response> getWuakala(int id) async {
     return await http.get(Uri.parse(
         Global.baseApiUrl + '/api/wuakalasApi/Getwuakala?id=' + id.toString()));

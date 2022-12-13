@@ -1,5 +1,6 @@
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:proyecto02/dto/wuakalaDTO.dart';
 import 'package:proyecto02/pages/wuakalaComentario.dart';
 
@@ -83,7 +84,33 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Global.colorSecundario,
                       shape: const StadiumBorder()),
-                  onPressed: () {},
+                  onPressed: () async {
+                    final response = await MessageService()
+                        .sigueAhiWuakala(index.toString());
+                    print(response.statusCode);
+                    if (response.statusCode == 200) {
+                      //! Aumentar valor de sigue ahi, mismo para ya no esta
+                      Fluttertoast.showToast(
+                          msg: "Se ingreso valor correctamente",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.green,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    } else {
+                      CoolAlert.show(
+                        backgroundColor: Global.colorSupport,
+                        confirmBtnColor: Global.colorSecundario,
+                        context: context,
+                        type: CoolAlertType.error,
+                        title: 'Error al subir Sigue Ahi...',
+                        text:
+                            'Ha ocurrido un error, vuelve a intentarlo más tarde',
+                        loopAnimation: false,
+                      );
+                    }
+                  },
                   child:
                       Text("Sigue ahí (" + wuakala.sigueAhi.toString() + ")")),
               SizedBox(
@@ -93,7 +120,32 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Global.colorSecundario,
                       shape: const StadiumBorder()),
-                  onPressed: () {},
+                  onPressed: () async {
+                    final response = await MessageService()
+                        .yaNoEstaWuakala(index.toString());
+
+                    if (response.statusCode == 200) {
+                      Fluttertoast.showToast(
+                          msg: "Se ingreso valor correctamente",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.green,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    } else {
+                      CoolAlert.show(
+                        backgroundColor: Global.colorSupport,
+                        confirmBtnColor: Global.colorSecundario,
+                        context: context,
+                        type: CoolAlertType.error,
+                        title: 'Error al subir Ya No está...',
+                        text:
+                            'Ha ocurrido un error, vuelve a intentarlo más tarde',
+                        loopAnimation: false,
+                      );
+                    }
+                  },
                   child:
                       Text("Ya no está (" + wuakala.yaNoEsta.toString() + ")")),
             ],
@@ -119,7 +171,7 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const wuakalaComentario()));
+                                      wuakalaComentario(index)));
                         },
                         child: Text("Comentar"))
                   ],
