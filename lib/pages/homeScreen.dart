@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   child: Text(
-                    "¡Bienvenido!",
+                    "Wakala 1.0",
                     style: TextStyle(
                         fontSize: 50,
                         fontWeight: FontWeight.bold,
@@ -54,7 +54,6 @@ class HomeScreen extends StatelessWidget {
                         },
                         child: const Text("Ingresar"))),
                 sizedBox,
-                sizedBox,
                 SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -69,6 +68,25 @@ class HomeScreen extends StatelessWidget {
                                   builder: (context) => const SignUp()));
                         },
                         child: const Text("Registrarme"))),
+                sizedBox,
+                SizedBox(
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("by"),
+                      SizedBox(
+                        width: 60,
+                      ),
+                      Column(
+                        children: [
+                          Text("Lucas Kraemer"),
+                          Text("Cristián Pérez")
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

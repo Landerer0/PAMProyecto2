@@ -8,7 +8,6 @@ windows
 .metadata
 analysis_options.yaml
 proyecto02.iml
-pubspec.lock
 
 # Miscellaneous
 *.class
