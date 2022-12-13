@@ -164,7 +164,6 @@ class _agregarMensajeState extends State<agregarMensaje> {
                             backgroundColor: Global.colorSecundario,
                             shape: const StadiumBorder()),
                         onPressed: () async {
-                          //! Validacion de errores
                           if (sectorController.text.isEmpty) {
                             Fluttertoast.showToast(
                                 msg: "Ingrese un título",

@@ -18,7 +18,7 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   late final pref;
 
-  TextEditingController userController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   Future<void> validarDatos(String user, String password) async {
@@ -27,7 +27,7 @@ class _loginState extends State<login> {
     if (response.statusCode == 200) {
       //almacenar de alguna manera el login
 
-      await pref.setString('usuario', user);
+      await pref.setString('email', user);
 
       Global.login = user;
       Navigator.push(
@@ -57,8 +57,8 @@ class _loginState extends State<login> {
 
   void cargaPreferencia() async {
     pref = await SharedPreferences.getInstance();
-    login_guardado = pref.getString("usuario");
-    userController.text = login_guardado == null ? "" : login_guardado!;
+    login_guardado = pref.getString("email");
+    emailController.text = login_guardado == null ? "" : login_guardado!;
   }
 
   @override
@@ -89,12 +89,12 @@ class _loginState extends State<login> {
                 Image.asset("assets/images/login.jpg"),
                 sizedBox,
                 TextField(
-                    controller: userController,
+                    controller: emailController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(40)),
-                        hintText: "Ingrese su usuario",
-                        labelText: "Usuario",
+                        hintText: "Ingrese su email",
+                        labelText: "Email",
                         suffixIcon:
                             const Icon(Icons.email, color: Colors.black54))),
                 sizedBox,
@@ -117,6 +117,7 @@ class _loginState extends State<login> {
                             backgroundColor: Global.colorSecundario,
                             shape: const StadiumBorder()),
                         onPressed: () {
+                          /*
                           Global.login = "DEMO";
                           Navigator.push(
                               context,
@@ -124,9 +125,10 @@ class _loginState extends State<login> {
                                   builder: (context) => Principal()));
                           //DEMO LOGIN
                           return;
-                          if (userController.text.isEmpty) {
+                          */
+                          if (emailController.text.isEmpty) {
                             Fluttertoast.showToast(
-                                msg: "Ingrese un usuario válido",
+                                msg: "Ingrese un email válido",
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIosWeb: 1,
@@ -144,24 +146,10 @@ class _loginState extends State<login> {
                                 fontSize: 16.0);
                           } else {
                             validarDatos(
-                                userController.text, passwordController.text);
+                                emailController.text, passwordController.text);
                           }
                         },
                         child: const Text("Acceder"))),
-                sizedBox,
-                GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const RememberUser()));
-                    },
-                    child: Text(
-                      "¿Olvidó su contraseña?",
-                      style: TextStyle(
-                          color: Global.colorTexto,
-                          fontWeight: FontWeight.bold),
-                    )),
                 sizedBox,
                 GestureDetector(
                     onTap: () {
