@@ -1,7 +1,10 @@
+import 'dart:ffi';
+
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:proyecto02/dto/wuakalaDTO.dart';
+import 'package:proyecto02/pages/detalleFoto.dart';
 import 'package:proyecto02/pages/wuakalaComentario.dart';
 
 import '../dto/wuakalaDTO.dart';
@@ -24,6 +27,7 @@ class detalleWuakala extends StatefulWidget {
 
 class _detalleWuakalaState extends State<detalleWuakala> {
   int index;
+  late int textSigueAhi, textYaNoEsta;
   late Future<WuakalaDto> futureWuakala;
   Widget sizedBox = SizedBox(height: 20);
 
@@ -109,6 +113,8 @@ class _detalleWuakalaState extends State<detalleWuakala> {
 
   Widget mostrarDetalle(WuakalaDto wuakala) {
     List<Widget> listaComentarios = [];
+    textSigueAhi = wuakala.sigueAhi;
+    textYaNoEsta = wuakala.yaNoEsta;
     return Container(
       alignment: Alignment.center,
       child: Column(
@@ -129,18 +135,37 @@ class _detalleWuakalaState extends State<detalleWuakala> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.network(Global.baseApiUrl + "/images/" + wuakala.urlFoto1,
-                  scale: 10),
+              InkWell(
+                child: Image.network(
+                    Global.baseApiUrl + "/images/" + wuakala.urlFoto1,
+                    scale: 10),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => detalleFoto(Global.baseApiUrl +
+                              "/images/" +
+                              wuakala.urlFoto1)));
+                },
+              ),
               SizedBox(
                 width: 30,
               ),
-              Image.network(Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
-                  scale: 10),
+              InkWell(
+                child: Image.network(
+                    Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
+                    scale: 10),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => detalleFoto(Global.baseApiUrl +
+                              "/images/" +
+                              wuakala.urlFoto2)));
+                },
+              ),
             ],
           ),
-          //! encontre esto en internet, pero nose si funciona ya que no tengo el base 64
-          //Image.memory(base64Decode(
-          //    wuakala.urlFoto1.substring(0, wuakala.urlFoto1.length - 4))),
           sizedBox,
           Text("Subido por: " +
               wuakala.autor +
@@ -169,6 +194,9 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                           backgroundColor: Colors.green,
                           textColor: Colors.white,
                           fontSize: 16.0);
+                      setState(() {
+                        textSigueAhi += 1;
+                      });
                     } else {
                       CoolAlert.show(
                         backgroundColor: Global.colorSupport,
@@ -182,8 +210,7 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                       );
                     }
                   },
-                  child:
-                      Text("Sigue ahí (" + wuakala.sigueAhi.toString() + ")")),
+                  child: Text("Sigue ahí (" + textSigueAhi.toString() + ")")),
               SizedBox(
                 width: 20,
               ),
@@ -204,6 +231,9 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                           backgroundColor: Colors.green,
                           textColor: Colors.white,
                           fontSize: 16.0);
+                      setState(() {
+                        textYaNoEsta += 1;
+                      });
                     } else {
                       CoolAlert.show(
                         backgroundColor: Global.colorSupport,
@@ -217,8 +247,7 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                       );
                     }
                   },
-                  child:
-                      Text("Ya no está (" + wuakala.yaNoEsta.toString() + ")")),
+                  child: Text("Ya no está (" + textYaNoEsta.toString() + ")")),
             ],
           ),
           //! Agregar boton agregar comentario
