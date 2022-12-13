@@ -134,6 +134,10 @@ class _detalleWuakalaState extends State<detalleWuakala> {
               SizedBox(
                 width: 30,
               ),
+              if (wuakala.urlFoto2 == "") ...[
+                Image.network(Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
+                    scale: 10),
+              ],
               Image.network(Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
                   scale: 10),
             ],
