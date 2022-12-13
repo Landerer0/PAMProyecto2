@@ -87,28 +87,6 @@ class _detalleWuakalaState extends State<detalleWuakala> {
         ),
       ),
     );
-    /*
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          com.descripcion,
-          style: TextStyle(fontSize: 16),
-        ),
-        sizedBox,
-        Text(
-          "Por: " + com.autor,
-          textAlign: TextAlign.end,
-        ),
-        //Text("com id: " + com.id.toString()),
-        //Text("com autor: " + com.autor),
-        //Text("com descripcion: " + com.descripcion),
-        //Text("com comentario: " + com.fechaComentario),
-        sizedBox,
-        sizedBox,
-      ],
-    );
-    */
   }
 
   Widget mostrarDetalle(WuakalaDto wuakala) {
@@ -151,22 +129,21 @@ class _detalleWuakalaState extends State<detalleWuakala> {
               SizedBox(
                 width: 30,
               ),
-              InkWell(
-                child: Image.network(
-                    Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
-                    scale: 10),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => detalleFoto(Global.baseApiUrl +
-                              "/images/" +
-                              wuakala.urlFoto2)));
-                },
-              ),
               if (wuakala.urlFoto2 == "") ...[
-                Image.network(Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
-                    scale: 10),
+                InkWell(
+                  child: Image.network(
+                      Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
+                      scale: 10),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => detalleFoto(
+                                Global.baseApiUrl +
+                                    "/images/" +
+                                    wuakala.urlFoto2)));
+                  },
+                ),
               ],
               Image.network(Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
                   scale: 10),
@@ -191,7 +168,6 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                         .sigueAhiWuakala(index.toString());
                     print(response.statusCode);
                     if (response.statusCode == 200) {
-                      //! Aumentar valor de sigue ahi, mismo para ya no esta
                       Fluttertoast.showToast(
                           msg: "Se ingreso valor correctamente",
                           toastLength: Toast.LENGTH_SHORT,
@@ -256,7 +232,6 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                   child: Text("Ya no está (" + textYaNoEsta.toString() + ")")),
             ],
           ),
-          //! Agregar boton agregar comentario
           FractionallySizedBox(
             widthFactor: 0.95,
             child: Column(
