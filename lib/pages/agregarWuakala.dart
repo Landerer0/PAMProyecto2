@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
@@ -18,14 +20,16 @@ class agregarMensaje extends StatefulWidget {
 }
 
 class _agregarMensajeState extends State<agregarMensaje> {
-  TextEditingController titleController = TextEditingController();
-  TextEditingController textController = TextEditingController();
+  TextEditingController sectorController = TextEditingController();
+  TextEditingController descripcionController = TextEditingController();
   bool showPic = false;
   String? imagen1, imagen2;
   @override
-  Future<void> validarMensaje(title, text) async {
-    final response =
-        await MessageService().ingresoMensaje(Global.login, title, text);
+  Future<void> validarMensaje(sector, descripcion, imagen1, imagen2) async {
+    final response = await MessageService()
+        .ingresoWuakala(Global.login, sector, descripcion, imagen1, imagen2);
+
+    print(response.statusCode);
 
     if (response.statusCode == 201) {
       // await es necesario para esperar a que el usuario presione el boton y alcance a leer el mensaje
@@ -47,7 +51,7 @@ class _agregarMensajeState extends State<agregarMensaje> {
         confirmBtnColor: Global.colorSecundario,
         context: context,
         type: CoolAlertType.error,
-        title: 'Oops...',
+        title: 'Error al subir Wuakala...',
         text: 'Ha ocurrido un error, vuelve a intentarlo más tarde',
         loopAnimation: false,
       );
@@ -82,7 +86,7 @@ class _agregarMensajeState extends State<agregarMensaje> {
                 ),
                 sizedBox,
                 TextField(
-                    controller: titleController,
+                    controller: sectorController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(40)),
@@ -92,7 +96,7 @@ class _agregarMensajeState extends State<agregarMensaje> {
                             color: Colors.black54))),
                 sizedBox,
                 TextField(
-                    controller: textController,
+                    controller: descripcionController,
                     minLines: 10,
                     maxLines: null,
                     decoration: InputDecoration(
@@ -159,9 +163,9 @@ class _agregarMensajeState extends State<agregarMensaje> {
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Global.colorSecundario,
                             shape: const StadiumBorder()),
-                        onPressed: () {
+                        onPressed: () async {
                           //! Validacion de errores
-                          if (titleController.text.isEmpty) {
+                          if (sectorController.text.isEmpty) {
                             Fluttertoast.showToast(
                                 msg: "Ingrese un título",
                                 toastLength: Toast.LENGTH_SHORT,
@@ -170,7 +174,7 @@ class _agregarMensajeState extends State<agregarMensaje> {
                                 backgroundColor: Colors.red,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
-                          } else if (textController.text.isEmpty) {
+                          } else if (descripcionController.text.isEmpty) {
                             Fluttertoast.showToast(
                                 msg: "Ingrese un mensaje",
                                 toastLength: Toast.LENGTH_SHORT,
@@ -180,8 +184,32 @@ class _agregarMensajeState extends State<agregarMensaje> {
                                 textColor: Colors.white,
                                 fontSize: 16.0);
                           } else {
+                            File image1file =
+                                File(imagen1!); //convert Path to File
+                            Uint8List image1bytes = await image1file
+                                .readAsBytes(); //convert to bytes
+                            String base64string1 = base64.encode(
+                                image1bytes); //convert bytes to base64 string
+                            print(base64string1);
+                            File image2file =
+                                File(imagen2!); //convert Path to File
+                            Uint8List image2bytes = await image2file
+                                .readAsBytes(); //convert to bytes
+                            String base64string2 = base64.encode(
+                                image2bytes); //convert bytes to base64 string
+                            print(base64string1);
+                            print(base64string2);
+                            if (base64string1 == base64string2)
+                              print("iguales");
+                            print(sectorController.text);
+                            print(
+                                "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+                            print(descripcionController.text);
                             validarMensaje(
-                                titleController.text, textController.text);
+                                sectorController.text,
+                                descripcionController.text,
+                                base64string1,
+                                base64string2);
                           }
                         },
                         child: const Text("Denunciar Wuakala"))),

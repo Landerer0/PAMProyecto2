@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cool_alert/cool_alert.dart';
-import 'package:proyecto02/pages/agregarMensaje.dart';
+import 'package:proyecto02/pages/agregarWuakala.dart';
 import 'package:proyecto02/pages/detalleWuakala.dart';
 import 'package:proyecto02/pages/homeScreen.dart';
 import 'package:proyecto02/dto/messageDTO.dart';
@@ -32,6 +32,8 @@ class _PrincipalState extends State<Principal> {
   Future<List<WuakalasDto>> getMessages() async {
     final response = await http
         .get(Uri.parse(Global.baseApiUrl + '/api/wuakalasApi/Getwuakalas'));
+
+    print(response.statusCode);
 
     if (response.statusCode == 200) {
       //print(response.body);

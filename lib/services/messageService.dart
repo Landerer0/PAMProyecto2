@@ -18,16 +18,19 @@ class MessageService {
   }
 
   // Agregar un mensaje en el sistema
-  Future<http.Response> ingresoMensaje(
-      String login, String titulo, String descripcion) async {
-    return await http.post(Uri.parse(Global.baseApiUrl + '/api/mensajes'),
+  Future<http.Response> ingresoWuakala(String login, String sector,
+      String descripcion, String imagen1, String imagen2) async {
+    return await http.post(
+        Uri.parse(Global.baseApiUrl + '/api/wuakalasApi/Postwuakalas/'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
-          'login': login,
-          'titulo': titulo,
-          'texto': descripcion
+          'sector': sector,
+          'descripcion': descripcion,
+          'id_autor': 1.toString(), //! CAMBIAR DSPS POR EL ID VERDADERO
+          'base64Foto1': imagen1,
+          'base64Foto2': imagen2
         }));
   }
 
