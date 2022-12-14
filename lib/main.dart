@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'LuciMensajes',
       theme: ThemeData(
         fontFamily: 'Calibri',
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.brown,
       ),
       home: const HomeScreen(),
     );

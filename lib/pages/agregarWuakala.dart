@@ -118,16 +118,25 @@ class _agregarMensajeState extends State<agregarMensaje> {
                           ),
                         sizedBox,
                         //Coso para capturar imagen de la camara
-                        ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Global.colorSecundario,
-                                shape: const StadiumBorder()),
+                        IconButton(
                             onPressed: () async {
                               _navigateAndDisplaySelection1(context);
                             },
-                            child: const Text("Foto 1")),
+                            icon: Icon(Icons.camera_alt),
+                            iconSize: 50,
+                            color: Global.colorSecundario),
                         sizedBox,
-                        Text("Borrar"), // relacionado con la camara
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Global.colorOficial,
+                                shape: const StadiumBorder()),
+                            onPressed: () {
+                              setState(() {
+                                imagen1 = null;
+                              });
+                            },
+                            child: const Text(
+                                "Borrar")), // relacionado con la camara
                       ],
                     ),
                     Column(
@@ -139,18 +148,28 @@ class _agregarMensajeState extends State<agregarMensaje> {
                           ),
                         sizedBox,
                         //Coso para capturar imagen de la camara
-                        ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Global.colorSecundario,
-                                shape: const StadiumBorder()),
+                        IconButton(
                             onPressed: () async {
                               _navigateAndDisplaySelection2(context);
                             },
-                            child: const Text("Foto 2")),
+                            icon: Icon(Icons.camera_alt),
+                            iconSize: 50,
+                            color: Global.colorSecundario),
+                        //child: const Text("Foto 2")),
 
                         //Coso para capturar imagen de la camara
                         sizedBox,
-                        Text("Borrar"), // relacionado con la camara
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Global.colorOficial,
+                                shape: const StadiumBorder()),
+                            onPressed: () {
+                              setState(() {
+                                imagen2 = null;
+                              });
+                            },
+                            child: const Text(
+                                "Borrar")), // relacionado con la camara
                       ],
                     ),
                   ],
@@ -195,7 +214,7 @@ class _agregarMensajeState extends State<agregarMensaje> {
                             File image1file, image2file;
                             Uint8List image1bytes, image2bytes;
                             String base64string1, base64string2;
-                            String? imagen2;
+                            //String? imagen2; -> este era el problema
                             image1file = File(imagen1!); //convert Path to File
                             image1bytes = await image1file
                                 .readAsBytes(); //convert to bytes

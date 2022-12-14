@@ -75,7 +75,7 @@ class _PrincipalState extends State<Principal> {
             DrawerHeader(
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/images/drawer.jpg"),
+                      image: AssetImage("assets/images/yellow-drawer.jpg"),
                       fit: BoxFit.cover)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,

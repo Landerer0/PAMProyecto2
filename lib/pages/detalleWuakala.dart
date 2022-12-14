@@ -113,27 +113,60 @@ class _detalleWuakalaState extends State<detalleWuakala> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                child: Image.network(
+              if (wuakala.urlFoto1 != "") ...[
+                InkWell(
+                  child: Image.network(
                     Global.baseApiUrl + "/images/" + wuakala.urlFoto1,
-                    scale: 10),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => detalleFoto(Global.baseApiUrl +
-                              "/images/" +
-                              wuakala.urlFoto1)));
-                },
-              ),
+                    scale: 10,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    },
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => detalleFoto(
+                                Global.baseApiUrl +
+                                    "/images/" +
+                                    wuakala.urlFoto1)));
+                  },
+                ),
+              ],
               SizedBox(
                 width: 30,
               ),
-              if (wuakala.urlFoto2 == "") ...[
+              if (wuakala.urlFoto2 != "") ...[
                 InkWell(
                   child: Image.network(
-                      Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
-                      scale: 10),
+                    Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
+                    scale: 10,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    },
+                  ),
                   onTap: () {
                     Navigator.push(
                         context,
@@ -144,9 +177,7 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                                     wuakala.urlFoto2)));
                   },
                 ),
-              ],
-              Image.network(Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
-                  scale: 10),
+              ]
             ],
           ),
           sizedBox,
@@ -248,7 +279,7 @@ class _detalleWuakalaState extends State<detalleWuakala> {
                             backgroundColor: Global.colorSecundario,
                             shape: const StadiumBorder()),
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>

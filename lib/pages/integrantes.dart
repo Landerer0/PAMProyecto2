@@ -78,8 +78,8 @@ class _IntegrantesState extends State<Integrantes> {
                               SizedBox(height: 20),
                               CircleAvatar(
                                 radius: 60,
-                                backgroundImage:
-                                    AssetImage("assets/images/crisperez.jpeg"),
+                                backgroundImage: AssetImage(
+                                    "assets/images/crisperez2022.jpg"),
                               ),
                               SizedBox(height: 10),
                               Text(

@@ -1,6 +1,7 @@
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:proyecto02/pages/detalleWuakala.dart';
 import 'package:proyecto02/services/messageService.dart';
 
 import '../global.dart';
@@ -37,8 +38,11 @@ class _wuakalaComentarioState extends State<wuakalaComentario> {
         loopAnimation: false,
       );
       // el usuario se registro correctamente
-      Navigator.pop(
+      Navigator.pushReplacement(
         context,
+        MaterialPageRoute(
+          builder: (context) => detalleWuakala(index),
+        ),
       );
     } else {
       CoolAlert.show(
