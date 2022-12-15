@@ -28,8 +28,9 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   child: Text(
-                    "Wakala 1.0",
+                    "Wakala APP",
                     style: TextStyle(
+                        fontFamily: 'Rubik',
                         fontSize: 50,
                         fontWeight: FontWeight.bold,
                         color: Global.colorSecundario),
@@ -58,14 +59,24 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("by"),
+                      Text("by",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              fontStyle: FontStyle.italic)),
                       SizedBox(
                         width: 60,
                       ),
                       Column(
                         children: [
-                          Text("Lucas Kraemer"),
-                          Text("Cristián Pérez")
+                          Text(
+                            "Lucas Kraemer",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text("Cristián Pérez", style: TextStyle(fontSize: 20))
                         ],
                       )
                     ],

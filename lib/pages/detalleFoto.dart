@@ -17,6 +17,7 @@ class _detalleFotoState extends State<detalleFoto> {
   Widget build(BuildContext context) {
     const sizedBox = SizedBox(height: 20);
     return Scaffold(
+      backgroundColor: Global.colorSupport,
       //const sizedBox = SizedBox(height: 20);
       appBar: AppBar(
         backgroundColor: Global.colorOficial,
@@ -28,6 +29,7 @@ class _detalleFotoState extends State<detalleFoto> {
       body: Center(
         child: Image.network(
           url,
+          scale: 3,
           loadingBuilder: (BuildContext context, Widget child,
               ImageChunkEvent? loadingProgress) {
             if (loadingProgress == null) {

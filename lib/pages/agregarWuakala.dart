@@ -61,6 +61,7 @@ class _agregarMensajeState extends State<agregarMensaje> {
   Widget build(BuildContext context) {
     const sizedBox = SizedBox(height: 30);
     return Scaffold(
+      backgroundColor: Global.colorSupport,
       appBar: AppBar(
         backgroundColor: Global.colorOficial,
         centerTitle: true,

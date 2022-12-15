@@ -70,6 +70,7 @@ class _loginState extends State<login> {
   Widget build(BuildContext context) {
     const sizedBox = SizedBox(height: 30);
     return Scaffold(
+      backgroundColor: Global.colorSupport,
       appBar: AppBar(
         backgroundColor: Global.colorOficial,
         title: const Text("Ingreso"),

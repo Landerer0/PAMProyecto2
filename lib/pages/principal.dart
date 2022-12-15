@@ -61,6 +61,7 @@ class _PrincipalState extends State<Principal> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
+        backgroundColor: Global.colorSupport,
         appBar: AppBar(
           backgroundColor: Global.colorOficial,
           centerTitle: true,
@@ -207,7 +208,8 @@ class _PrincipalState extends State<Principal> {
                                 children: [
                                   Text(
                                     "Por: ${obj.autor}",
-                                    style: TextStyle(color: Global.colorTexto),
+                                    style:
+                                        TextStyle(color: Global.colorOficial),
                                   ),
                                   Text(
                                     "Fecha: ${obj.fecha}",

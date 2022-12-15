@@ -14,6 +14,7 @@ class _IntegrantesState extends State<Integrantes> {
   Widget build(BuildContext context) {
     const sizedBox = SizedBox(height: 20);
     return Scaffold(
+      backgroundColor: Global.colorSupport,
       //const sizedBox = SizedBox(height: 20);
       appBar: AppBar(
         backgroundColor: Global.colorOficial,
@@ -66,7 +67,7 @@ class _IntegrantesState extends State<Integrantes> {
                               CircleAvatar(
                                 radius: 60,
                                 backgroundImage: AssetImage(
-                                    "assets/images/lucaskraemer.png"),
+                                    "assets/images/lucaskraemer.jpeg"),
                               ),
                               SizedBox(height: 10),
                               Text(
@@ -78,8 +79,8 @@ class _IntegrantesState extends State<Integrantes> {
                               SizedBox(height: 20),
                               CircleAvatar(
                                 radius: 60,
-                                backgroundImage: AssetImage(
-                                    "assets/images/crisperez2022.jpg"),
+                                backgroundImage:
+                                    AssetImage("assets/images/crisperez.jpg"),
                               ),
                               SizedBox(height: 10),
                               Text(

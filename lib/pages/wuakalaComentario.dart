@@ -62,6 +62,7 @@ class _wuakalaComentarioState extends State<wuakalaComentario> {
     const sizedBox = SizedBox(height: 30);
 
     return Scaffold(
+        backgroundColor: Global.colorSupport,
         appBar: AppBar(
           backgroundColor: Global.colorOficial,
           centerTitle: true,

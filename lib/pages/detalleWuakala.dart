@@ -311,6 +311,7 @@ class _detalleWuakalaState extends State<detalleWuakala> {
             Color.fromARGB(255, 70, 70, 70)
           ])),
       child: Scaffold(
+        backgroundColor: Global.colorSupport,
         appBar: AppBar(
           backgroundColor: Global.colorOficial,
           centerTitle: true,
