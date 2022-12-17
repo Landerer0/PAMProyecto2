@@ -79,6 +79,7 @@ class _agregarMensajeState extends State<agregarMensaje> {
                   alignment: Alignment.center,
                   child: Text(
                     "Avisar por nuevo Wuakala",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
