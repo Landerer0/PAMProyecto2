@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 sizedBox,
-                Image.asset("assets/images/welcome2.png"),
+                Image.asset("assets/images/recycleWakala.png"),
                 sizedBox,
                 SizedBox(
                     width: double.infinity,

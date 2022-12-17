@@ -92,7 +92,7 @@ class _loginState extends State<login> {
                         color: Global.colorSecundario),
                   ),
                 ),
-                Image.asset("assets/images/login.jpg"),
+                Image.asset("assets/images/newLogin.png"),
                 sizedBox,
                 TextField(
                     controller: emailController,
