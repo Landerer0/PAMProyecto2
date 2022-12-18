@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Global {
   static int idUsuario = 0;
   static String login = "";
-  static String baseApiUrl = "https://882aa2605781.sa.ngrok.io";
+  static String baseApiUrl = "https://d22292e4f79c.sa.ngrok.io";
   static Color colorOficial = Color.fromARGB(255, 191, 160, 4);
   static Color colorSecundario = Color.fromARGB(255, 89, 75, 2);
   static Color colorSupport = Color.fromARGB(255, 245, 241, 230);

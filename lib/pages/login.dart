@@ -32,7 +32,7 @@ class _loginState extends State<login> {
       await pref.setString('email', user);
       UserDto usuario = userDtoFromJson(response.body);
 
-      Global.login = user;
+      Global.login = usuario.nombre;
       Global.idUsuario = usuario.id;
       print(Global.idUsuario);
       Navigator.push(
@@ -135,6 +135,15 @@ class _loginState extends State<login> {
                           if (emailController.text.isEmpty) {
                             Fluttertoast.showToast(
                                 msg: "Ingrese un email válido",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                          } else if (!emailController.text.contains('@')) {
+                            Fluttertoast.showToast(
+                                msg: "Ingrese un email válido (@)",
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIosWeb: 1,
