@@ -108,7 +108,7 @@ class _wuakalaComentarioState extends State<wuakalaComentario> {
                           onPressed: () async {
                             if (comentarioController.text.isEmpty) {
                               Fluttertoast.showToast(
-                                  msg: "Ingrese un título",
+                                  msg: "Ingrese un comentario",
                                   toastLength: Toast.LENGTH_SHORT,
                                   gravity: ToastGravity.CENTER,
                                   timeInSecForIosWeb: 1,

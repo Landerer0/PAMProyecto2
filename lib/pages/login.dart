@@ -26,6 +26,8 @@ class _loginState extends State<login> {
   Future<void> validarDatos(String user, String password) async {
     final response = await LoginService().validar(user, password);
 
+    print("response:");
+    print(response.statusCode);
     if (response.statusCode == 200) {
       //almacenar de alguna manera el login
 
@@ -37,6 +39,17 @@ class _loginState extends State<login> {
       print(Global.idUsuario);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => Principal()));
+    } else if (response.statusCode == 404) {
+      CoolAlert.show(
+        backgroundColor: Global.colorSupport,
+        confirmBtnColor: Global.colorSecundario,
+        context: context,
+        type: CoolAlertType.error,
+        title: 'Oops...',
+        text:
+            "Datos Incorrectos", //'Ha ocurrido un error, vuelve a intentarlo más tarde',
+        loopAnimation: false,
+      );
     } else {
       CoolAlert.show(
         backgroundColor: Global.colorSupport,
