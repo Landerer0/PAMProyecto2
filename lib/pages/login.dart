@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cool_alert/cool_alert.dart';
 import 'package:proyecto02/global.dart';
 import 'package:proyecto02/pages/principal.dart';
@@ -24,9 +26,13 @@ class _loginState extends State<login> {
   TextEditingController passwordController = TextEditingController();
 
   Future<void> validarDatos(String user, String password) async {
+    print("Validar 1");
+    print(user + " " + password);
     final response = await LoginService().validar(user, password);
 
-    print("response:");
+    print("Validar 2");
+
+    //print("response:");
     print(response.statusCode);
     if (response.statusCode == 200) {
       //almacenar de alguna manera el login
@@ -34,11 +40,11 @@ class _loginState extends State<login> {
       await pref.setString('email', user);
       UserDto usuario = userDtoFromJson(response.body);
 
-      Global.login = usuario.nombre;
-      Global.idUsuario = usuario.id;
-      print(Global.idUsuario);
+      Global.login = usuario.email!;
+      Global.idUsuario = usuario.idUsuario!;
+      //print(Global.idUsuario);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Principal()));
+          context, MaterialPageRoute(builder: (context) => const Principal()));
     } else if (response.statusCode == 404) {
       CoolAlert.show(
         backgroundColor: Global.colorSupport,
@@ -68,7 +74,6 @@ class _loginState extends State<login> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     cargaPreferencia();
   }
@@ -136,15 +141,15 @@ class _loginState extends State<login> {
                             backgroundColor: Global.colorSecundario,
                             shape: const StadiumBorder()),
                         onPressed: () {
-                          /*
-                          Global.login = "DEMO";
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Principal()));
-                          //DEMO LOGIN
-                          return;
-                          */
+                          ////DEMOOOOOO
+                          //Global.login = "DEMO";
+                          //Navigator.push(
+                          //    context,
+                          //    MaterialPageRoute(
+                          //        builder: (context) => Principal()));
+                          ////DEMO LOGIN
+                          //return;
+
                           if (emailController.text.isEmpty) {
                             Fluttertoast.showToast(
                                 msg: "Ingrese un email válido",

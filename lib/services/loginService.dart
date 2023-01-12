@@ -6,9 +6,11 @@ import 'package:proyecto02/global.dart';
 class LoginService {
   // Validar que los datos ingresados del usuario pertenecen al sistema
   Future<http.Response> validar(String email, String pass) async {
+    print(
+        Global.baseApiUrl + '/apiUsuario?email=' + email + '&password=' + pass);
     return await http.get(
       Uri.parse(Global.baseApiUrl +
-          '/api/usuariosApi/Getusuario?email=' +
+          '/apiUsuario?email=' +
           email +
           '&password=' +
           pass),
