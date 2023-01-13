@@ -31,7 +31,7 @@ class _agregarMensajeState extends State<agregarMensaje> {
 
     print(response.statusCode);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       // await es necesario para esperar a que el usuario presione el boton y alcance a leer el mensaje
       await CoolAlert.show(
         backgroundColor: Global.colorSupport,

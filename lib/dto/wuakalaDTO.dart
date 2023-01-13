@@ -12,11 +12,11 @@ String wuakalaDtoToJson(WuakalaDto data) => json.encode(data.toJson());
 
 class WuakalaDto {
   WuakalaDto({
-    required this.id,
+    required this.idWuakala,
     required this.sector,
     required this.descripcion,
-    required this.fechaPublicacion,
     required this.autor,
+    required this.fecha,
     required this.urlFoto1,
     required this.urlFoto2,
     required this.sigueAhi,
@@ -24,11 +24,11 @@ class WuakalaDto {
     required this.comentarios,
   });
 
-  final int id;
+  final int idWuakala;
   final String sector;
   final String descripcion;
-  final String fechaPublicacion;
   final String autor;
+  final String fecha;
   final String urlFoto1;
   final String urlFoto2;
   final int sigueAhi;
@@ -36,57 +36,61 @@ class WuakalaDto {
   final List<Comentario> comentarios;
 
   factory WuakalaDto.fromJson(Map<String, dynamic> json) => WuakalaDto(
-        id: json["id"],
+        idWuakala: json["id_wuakala"],
         sector: json["sector"],
         descripcion: json["descripcion"],
-        fechaPublicacion: json["fecha_publicacion"],
         autor: json["autor"],
+        fecha: json["fecha"],
         urlFoto1: json["url_foto1"],
         urlFoto2: json["url_foto2"],
         sigueAhi: json["sigue_ahi"],
         yaNoEsta: json["ya_no_esta"],
-        comentarios: List<Comentario>.from(
-            json["comentarios"].map((x) => Comentario.fromJson(x))),
+        comentarios: json["comentarios"] == null
+            ? []
+            : List<Comentario>.from(
+                json["comentarios"].map((x) => Comentario.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
+        "id_wuakala": idWuakala,
         "sector": sector,
         "descripcion": descripcion,
-        "fecha_publicacion": fechaPublicacion,
         "autor": autor,
+        "fecha": fecha,
         "url_foto1": urlFoto1,
         "url_foto2": urlFoto2,
         "sigue_ahi": sigueAhi,
         "ya_no_esta": yaNoEsta,
-        "comentarios": List<dynamic>.from(comentarios.map((x) => x.toJson())),
+        "comentarios": comentarios == null
+            ? []
+            : List<dynamic>.from(comentarios.map((x) => x.toJson())),
       };
 }
 
 class Comentario {
   Comentario({
-    required this.id,
+    required this.idWuakala,
     required this.descripcion,
-    required this.fechaComentario,
     required this.autor,
+    required this.fecha,
   });
 
-  final int id;
+  final int idWuakala;
   final String descripcion;
-  final String fechaComentario;
   final String autor;
+  final String fecha;
 
   factory Comentario.fromJson(Map<String, dynamic> json) => Comentario(
-        id: json["id"],
+        idWuakala: json["id_wuakala"],
         descripcion: json["descripcion"],
-        fechaComentario: json["fecha_comentario"],
         autor: json["autor"],
+        fecha: json["fecha"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
+        "id_wuakala": idWuakala,
         "descripcion": descripcion,
-        "fecha_comentario": fechaComentario,
         "autor": autor,
+        "fecha": fecha,
       };
 }

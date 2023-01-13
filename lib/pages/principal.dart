@@ -30,8 +30,7 @@ class _PrincipalState extends State<Principal> {
   }
 
   Future<List<WuakalasDto>> getMessages() async {
-    final response = await http
-        .get(Uri.parse(Global.baseApiUrl + '/api/wuakalasApi/Getwuakalas'));
+    final response = await http.get(Uri.parse(Global.baseApiUrl + '/wuakalas'));
 
     print(response.statusCode);
 
@@ -225,7 +224,7 @@ class _PrincipalState extends State<Principal> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          detalleWuakala(obj.id)));
+                                          detalleWuakala(obj.idWuakala)));
                             },
                           ),
                         ],
@@ -237,7 +236,7 @@ class _PrincipalState extends State<Principal> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      detalleWuakala(obj.id)));
+                                      detalleWuakala(obj.idWuakala)));
                         },
                         icon: Icon(
                           Icons.keyboard_arrow_right,

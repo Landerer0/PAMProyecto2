@@ -13,28 +13,48 @@ String wuakalasDtoToJson(List<WuakalasDto> data) =>
 
 class WuakalasDto {
   WuakalasDto({
-    required this.id,
+    required this.idWuakala,
     required this.sector,
     required this.autor,
     required this.fecha,
   });
 
-  final int id;
+  final int idWuakala;
   final String sector;
   final String autor;
   final String fecha;
 
   factory WuakalasDto.fromJson(Map<String, dynamic> json) => WuakalasDto(
-        id: json["id"],
+        idWuakala: json["id_wuakala"],
         sector: json["sector"],
         autor: json["autor"],
         fecha: json["fecha"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
+        "id_wuakala": idWuakala,
         "sector": sector,
         "autor": autor,
         "fecha": fecha,
       };
+}
+
+enum Autor { LUCAS }
+
+final autorValues = EnumValues({"Lucas": Autor.LUCAS});
+
+enum Sector { MI_CASA }
+
+final sectorValues = EnumValues({"Mi Casa": Sector.MI_CASA});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  Map<T, String>? reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String>? get reverse {
+    reverseMap ??= map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
 }

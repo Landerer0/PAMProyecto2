@@ -110,37 +110,21 @@ class _detalleWuakalaState extends State<detalleWuakala> {
           ),
           sizedBox,
           //Text("url1: " + wuakala.urlFoto1),
+          /*
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (wuakala.urlFoto1 != "") ...[
                 InkWell(
-                  child: Image.network(
-                    Global.baseApiUrl + "/images/" + wuakala.urlFoto1,
-                    scale: 10,
-                    loadingBuilder: (BuildContext context, Widget child,
-                        ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) {
-                        return child;
-                      }
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      );
-                    },
+                  child: Image.memory(
+                    base64Decode(wuakala.urlFoto1),
                   ),
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => detalleFoto(
-                                Global.baseApiUrl +
-                                    "/images/" +
-                                    wuakala.urlFoto1)));
+                            builder: (context) =>
+                                detalleFoto(wuakala.urlFoto1)));
                   },
                 ),
               ],
@@ -149,23 +133,8 @@ class _detalleWuakalaState extends State<detalleWuakala> {
               ),
               if (wuakala.urlFoto2 != "") ...[
                 InkWell(
-                  child: Image.network(
-                    Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
-                    scale: 10,
-                    loadingBuilder: (BuildContext context, Widget child,
-                        ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) {
-                        return child;
-                      }
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      );
-                    },
+                  child: Image.memory(
+                    base64Decode(wuakala.urlFoto1),
                   ),
                   onTap: () {
                     Navigator.push(
@@ -180,11 +149,9 @@ class _detalleWuakalaState extends State<detalleWuakala> {
               ]
             ],
           ),
+          */
           sizedBox,
-          Text("Subido por: " +
-              wuakala.autor +
-              " el día " +
-              wuakala.fechaPublicacion),
+          Text("Subido por: " + wuakala.autor + " el día " + wuakala.fecha),
 
           sizedBox,
           Row(
