@@ -26,6 +26,8 @@ class _agregarMensajeState extends State<agregarMensaje> {
   String? imagen1, imagen2;
   @override
   Future<void> validarMensaje(sector, descripcion, imagen1, imagen2) async {
+    print(imagen1);
+
     final response = await MessageService()
         .ingresoWuakala(Global.login, sector, descripcion, imagen1, imagen2);
 
