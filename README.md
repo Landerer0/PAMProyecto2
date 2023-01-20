@@ -12,3 +12,6 @@ Para ejecutar la app:
 Para iniciar sesion utilice las credenciales:
 - Email: lucas@jookeez.com
 - Contraseña: 123
+o también puede utilizar:
+- Email: prueba@jookeez.com
+- Contraseña: 123
