@@ -1,16 +1,14 @@
-# proyecto02
+# Proyecto de prueba de Flutter
 
-A new Flutter project.
+Una app muy basica que consiste de un login, y de consultas basicas de http para lograr realizar publicaciones respecto a sectores/lugares.
+Los datos se encuentran almacenados en una base de datos y son accedidos mediante una API desarrollada para dicho proposito.
 
-## Getting Started
+## Como ejecutar
+Para ejecutar la app:
 
-This project is a starting point for a Flutter application.
+- Descargar el código fuente y seleccionar el dispositivo a utilizar (actualmente solo se ha probado con Android).
+- Abrir la aplicación.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Para iniciar sesion utilice las credenciales:
+- Email: lucas@jookeez.com
+- Contraseña: 123

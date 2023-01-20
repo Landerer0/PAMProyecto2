@@ -29,7 +29,6 @@ class _detalleWuakalaState extends State<detalleWuakala> {
   int index;
   late int textSigueAhi, textYaNoEsta;
   late Future<WuakalaDto> futureWuakala;
-  late String base64Imagen1, base64Imagen2;
   Widget sizedBox = SizedBox(height: 20);
 
   _detalleWuakalaState({required this.index});
@@ -94,16 +93,6 @@ class _detalleWuakalaState extends State<detalleWuakala> {
     List<Widget> listaComentarios = [];
     textSigueAhi = wuakala.sigueAhi;
     textYaNoEsta = wuakala.yaNoEsta;
-    base64Imagen1 = wuakala.urlFoto1;
-    base64Imagen2 = wuakala.urlFoto1;
-    if (base64Imagen1.length % 4 > 0) {
-      base64Imagen1 +=
-          '=' * (4 - base64Imagen1.length % 4); // as suggested by Albert221
-    }
-    if (base64Imagen2.length % 4 > 0) {
-      base64Imagen2 +=
-          '=' * (4 - base64Imagen2.length % 4); // as suggested by Albert221
-    }
     return Container(
       alignment: Alignment.center,
       child: Column(
@@ -121,20 +110,37 @@ class _detalleWuakalaState extends State<detalleWuakala> {
           ),
           sizedBox,
           //Text("url1: " + wuakala.urlFoto1),
-          /*
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (wuakala.urlFoto1 != "") ...[
                 InkWell(
-                  child: Image.memory(
-                    base64Decode(base64Imagen1),
+                  child: Image.network(
+                    Global.baseApiUrl + "/images/" + wuakala.urlFoto1,
+                    scale: 10,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    },
                   ),
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => detalleFoto(base64Imagen1)));
+                            builder: (context) => detalleFoto(
+                                Global.baseApiUrl +
+                                    "/images/" +
+                                    wuakala.urlFoto1)));
                   },
                 ),
               ],
@@ -143,20 +149,37 @@ class _detalleWuakalaState extends State<detalleWuakala> {
               ),
               if (wuakala.urlFoto2 != "") ...[
                 InkWell(
-                  child: Image.memory(
-                    base64Decode(base64Imagen2),
+                  child: Image.network(
+                    Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
+                    scale: 10,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    },
                   ),
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => detalleFoto(base64Imagen2)));
+                            builder: (context) => detalleFoto(
+                                Global.baseApiUrl +
+                                    "/images/" +
+                                    wuakala.urlFoto2)));
                   },
                 ),
               ]
             ],
           ),
-          */
           sizedBox,
           Text("Subido por: " + wuakala.autor + " el día " + wuakala.fecha),
 
