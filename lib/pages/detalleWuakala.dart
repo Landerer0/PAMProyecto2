@@ -147,7 +147,7 @@ class _detalleWuakalaState extends State<detalleWuakala> {
               SizedBox(
                 width: 30,
               ),
-              if (wuakala.urlFoto2 != "") ...[
+              if (wuakala.urlFoto2 != "null") ...[
                 InkWell(
                   child: Image.network(
                     Global.baseApiUrl + "/images/" + wuakala.urlFoto2,
